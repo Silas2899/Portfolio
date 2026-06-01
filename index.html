@@ -1,0 +1,690 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Silas Ranjith — Finance & Product</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --navy:#0f2545;--navy-mid:#1a3a6b;--navy-light:#2a5298;
+  --gold:#c9a84c;--gold-light:#e8c97a;
+  --cream:#faf8f4;--cream-dark:#f0ece3;
+  --text:#1a1a2e;--text-muted:#5a6282;--text-light:#8892b0;
+  --white:#ffffff;--border:#ddd8ce;
+  --card-bg:#ffffff;--section-alt:#f6f3ee;
+}
+html{scroll-behavior:smooth}
+body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--text);line-height:1.6;overflow-x:hidden}
+
+nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(15,37,69,0.96);backdrop-filter:blur(12px);border-bottom:1px solid rgba(201,168,76,0.2)}
+.nav-inner{max-width:1100px;margin:0 auto;padding:0 2rem;display:flex;align-items:center;justify-content:space-between;height:60px}
+.nav-logo{font-family:'DM Serif Display',serif;font-size:1.2rem;color:var(--gold);letter-spacing:0.02em;text-decoration:none}
+.nav-links{display:flex;gap:2rem;list-style:none}
+.nav-links a{color:rgba(255,255,255,0.75);text-decoration:none;font-size:0.82rem;font-weight:500;letter-spacing:0.06em;text-transform:uppercase;transition:color 0.2s}
+.nav-links a:hover{color:var(--gold)}
+.nav-toggle{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:4px}
+.nav-toggle span{width:22px;height:2px;background:var(--white);border-radius:2px;transition:all 0.3s}
+
+#hero{min-height:100vh;background:linear-gradient(160deg,var(--navy) 0%,var(--navy-mid) 60%,#1e4080 100%);display:flex;align-items:center;position:relative;overflow:hidden;padding-top:60px}
+.hero-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(201,168,76,0.04) 1px,transparent 1px),linear-gradient(90deg,rgba(201,168,76,0.04) 1px,transparent 1px);background-size:60px 60px;pointer-events:none}
+.hero-orb{position:absolute;width:600px;height:600px;border-radius:50%;background:radial-gradient(circle,rgba(201,168,76,0.08) 0%,transparent 70%);right:-100px;top:50%;transform:translateY(-50%);pointer-events:none}
+.hero-content{max-width:1100px;margin:0 auto;padding:4rem 2rem;position:relative;z-index:1}
+.hero-eyebrow{font-family:'DM Mono',monospace;font-size:0.78rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold);margin-bottom:1.5rem;opacity:0;animation:fadeUp 0.8s 0.2s forwards}
+.hero-name{font-family:'DM Serif Display',serif;font-size:clamp(3.5rem,8vw,6.5rem);line-height:1;color:var(--white);margin-bottom:1rem;opacity:0;animation:fadeUp 0.8s 0.4s forwards}
+.hero-name em{color:var(--gold);font-style:normal}
+.hero-sub{font-size:1.15rem;color:rgba(255,255,255,0.7);max-width:560px;line-height:1.7;margin-bottom:2.5rem;font-weight:300;opacity:0;animation:fadeUp 0.8s 0.6s forwards}
+.hero-tags{display:flex;flex-wrap:wrap;gap:0.6rem;margin-bottom:3rem;opacity:0;animation:fadeUp 0.8s 0.8s forwards}
+.hero-tag{border:1px solid rgba(201,168,76,0.4);color:rgba(255,255,255,0.85);padding:0.35rem 0.9rem;border-radius:2rem;font-size:0.8rem;font-weight:500;letter-spacing:0.03em}
+.hero-cta{display:flex;gap:1rem;flex-wrap:wrap;opacity:0;animation:fadeUp 0.8s 1s forwards}
+.btn{padding:0.75rem 1.8rem;border-radius:0.3rem;font-size:0.88rem;font-weight:600;letter-spacing:0.04em;cursor:pointer;text-decoration:none;transition:all 0.25s;display:inline-block}
+.btn-primary{background:var(--gold);color:var(--navy);border:2px solid var(--gold)}
+.btn-primary:hover{background:var(--gold-light);border-color:var(--gold-light);transform:translateY(-2px)}
+.btn-outline{background:transparent;color:var(--white);border:2px solid rgba(255,255,255,0.35)}
+.btn-outline:hover{border-color:var(--white);transform:translateY(-2px)}
+.hero-scroll{position:absolute;bottom:2rem;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:0.4rem;color:rgba(255,255,255,0.4);font-size:0.72rem;letter-spacing:0.1em;text-transform:uppercase;animation:pulse 2s infinite}
+.scroll-line{width:1px;height:40px;background:linear-gradient(to bottom,rgba(255,255,255,0.4),transparent)}
+
+section{padding:6rem 2rem}
+.container{max-width:1100px;margin:0 auto}
+.section-label{font-family:'DM Mono',monospace;font-size:0.72rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold);margin-bottom:0.75rem}
+.section-title{font-family:'DM Serif Display',serif;font-size:clamp(2rem,4vw,3rem);color:var(--navy);line-height:1.15;margin-bottom:1rem}
+.section-title em{color:var(--navy-light);font-style:italic}
+.section-divider{width:48px;height:3px;background:var(--gold);margin-bottom:3rem;border-radius:2px}
+
+#about{background:var(--white)}
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:start}
+.about-text p{color:var(--text-muted);line-height:1.85;margin-bottom:1.2rem;font-size:1rem}
+.about-text p strong{color:var(--text);font-weight:600}
+.about-stats{display:grid;grid-template-columns:1fr 1fr;gap:1.2rem;margin-top:2rem}
+.stat-card{background:var(--section-alt);border-radius:0.5rem;padding:1.4rem;border-left:3px solid var(--gold)}
+.stat-num{font-family:'DM Serif Display',serif;font-size:2.2rem;color:var(--navy);line-height:1}
+.stat-label{font-size:0.78rem;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.06em;margin-top:0.3rem}
+.pillars{display:flex;flex-direction:column;gap:1.2rem}
+.pillar{background:var(--section-alt);border-radius:0.5rem;padding:1.4rem 1.6rem;border-top:2px solid transparent;transition:border-color 0.2s}
+.pillar:hover{border-top-color:var(--gold)}
+.pillar-num{font-family:'DM Mono',monospace;font-size:0.72rem;color:var(--gold);letter-spacing:0.1em;margin-bottom:0.4rem}
+.pillar-title{font-weight:600;font-size:0.95rem;color:var(--navy);margin-bottom:0.3rem}
+.pillar-text{font-size:0.87rem;color:var(--text-muted);line-height:1.6}
+
+#skills{background:var(--section-alt)}
+.skills-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1.5rem}
+.skill-card{background:var(--white);border-radius:0.6rem;padding:1.8rem;border:1px solid var(--border)}
+.skill-card-icon{width:40px;height:40px;background:var(--navy);border-radius:0.4rem;display:flex;align-items:center;justify-content:center;margin-bottom:1rem}
+.skill-card-icon svg{width:20px;height:20px;fill:var(--gold)}
+.skill-card-title{font-weight:700;font-size:0.88rem;color:var(--navy);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:1rem}
+.skill-tags{display:flex;flex-wrap:wrap;gap:0.5rem}
+.skill-tag{background:var(--section-alt);color:var(--text);font-size:0.78rem;padding:0.28rem 0.7rem;border-radius:0.25rem;font-weight:500;border:1px solid var(--border)}
+.skill-tag.highlight{background:var(--navy);color:var(--gold);border-color:var(--navy)}
+
+#experience{background:var(--white)}
+.timeline{position:relative;padding-left:2rem}
+.timeline::before{content:'';position:absolute;left:0;top:0;bottom:0;width:1px;background:linear-gradient(to bottom,var(--gold),var(--border))}
+.timeline-item{position:relative;margin-bottom:2.8rem;padding-bottom:2.8rem;border-bottom:1px solid var(--cream-dark)}
+.timeline-item:last-child{border-bottom:none;margin-bottom:0}
+.timeline-dot{position:absolute;left:-2rem;top:0.3rem;width:13px;height:13px;border-radius:50%;background:var(--gold);border:2px solid var(--white);box-shadow:0 0 0 3px var(--gold-light);transform:translateX(-6px)}
+.timeline-date{font-family:'DM Mono',monospace;font-size:0.72rem;letter-spacing:0.1em;color:var(--gold);text-transform:uppercase;margin-bottom:0.4rem}
+.timeline-co{font-family:'DM Serif Display',serif;font-size:1.4rem;color:var(--navy)}
+.timeline-role{font-size:0.9rem;color:var(--text-muted);margin-bottom:0.8rem;font-weight:500}
+.timeline-bullets{list-style:none;display:flex;flex-direction:column;gap:0.55rem}
+.timeline-bullets li{font-size:0.9rem;color:var(--text-muted);line-height:1.65;padding-left:1.2rem;position:relative}
+.timeline-bullets li::before{content:'▸';position:absolute;left:0;color:var(--gold);font-size:0.7rem;top:0.2rem}
+.award-badge{display:inline-flex;align-items:center;gap:0.4rem;background:#fff8e6;border:1px solid var(--gold);color:#7a5c00;font-size:0.75rem;font-weight:600;padding:0.25rem 0.7rem;border-radius:2rem;margin-bottom:0.8rem;font-family:'DM Mono',monospace;letter-spacing:0.04em}
+.award-badge svg{width:13px;height:13px;fill:#c9a84c;flex-shrink:0}
+
+#projects{background:var(--navy)}
+#projects .section-title{color:var(--white)}
+#projects .section-label{color:var(--gold-light)}
+.projects-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:1.5rem}
+.project-card{background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:0.6rem;padding:1.8rem;transition:all 0.3s;position:relative;overflow:hidden}
+.project-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:var(--gold);transform:scaleX(0);transform-origin:left;transition:transform 0.3s}
+.project-card:hover{background:rgba(255,255,255,0.08);transform:translateY(-4px)}
+.project-card:hover::before{transform:scaleX(1)}
+.project-tag{font-family:'DM Mono',monospace;font-size:0.68rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--gold);margin-bottom:0.7rem}
+.project-title{font-family:'DM Serif Display',serif;font-size:1.25rem;color:var(--white);margin-bottom:0.8rem;line-height:1.3}
+.project-desc{font-size:0.88rem;color:rgba(255,255,255,0.6);line-height:1.7;margin-bottom:1.2rem}
+.project-chips{display:flex;flex-wrap:wrap;gap:0.45rem}
+.project-chip{font-size:0.72rem;padding:0.22rem 0.6rem;border-radius:0.2rem;border:1px solid rgba(201,168,76,0.3);color:rgba(201,168,76,0.8);font-family:'DM Mono',monospace}
+
+/* Presentations */
+#presentations{background:var(--section-alt)}
+.pres-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:1.8rem}
+.pres-card{background:var(--white);border-radius:0.6rem;border:1px solid var(--border);overflow:hidden;transition:transform 0.25s,box-shadow 0.25s}
+.pres-card:hover{transform:translateY(-4px);box-shadow:0 12px 36px rgba(15,37,69,0.1)}
+.pres-thumb{height:140px;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}
+.pres-thumb-coinbase{background:linear-gradient(135deg,#0052ff 0%,#0a2c7a 100%)}
+.pres-thumb-securitize{background:linear-gradient(135deg,#1a1a2e 0%,#16213e 60%,#0f3460 100%)}
+.pres-thumb-funds{background:linear-gradient(135deg,#1b5e20 0%,#2e7d32 60%,#388e3c 100%)}
+.pres-thumb-text{font-family:'DM Serif Display',serif;font-size:2rem;color:rgba(255,255,255,0.15);letter-spacing:0.04em;user-select:none}
+.pres-logo{position:absolute;font-family:'DM Serif Display',serif;font-size:1.6rem;color:white;font-weight:700;letter-spacing:-0.01em}
+.pres-tag{position:absolute;top:0.8rem;right:0.8rem;background:rgba(255,255,255,0.15);color:white;font-size:0.68rem;padding:0.2rem 0.6rem;border-radius:1rem;font-family:'DM Mono',monospace;letter-spacing:0.06em;backdrop-filter:blur(4px)}
+.pres-body{padding:1.4rem 1.6rem}
+.pres-course{font-family:'DM Mono',monospace;font-size:0.7rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--gold);margin-bottom:0.4rem}
+.pres-title{font-family:'DM Serif Display',serif;font-size:1.15rem;color:var(--navy);margin-bottom:0.6rem;line-height:1.3}
+.pres-desc{font-size:0.86rem;color:var(--text-muted);line-height:1.65;margin-bottom:1rem}
+.pres-topics{display:flex;flex-wrap:wrap;gap:0.4rem}
+.pres-topic{background:var(--section-alt);border:1px solid var(--border);color:var(--text-muted);font-size:0.73rem;padding:0.22rem 0.6rem;border-radius:0.2rem;font-weight:500}
+
+#education{background:var(--white)}
+.edu-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:2rem}
+.edu-card{background:var(--section-alt);border-radius:0.6rem;padding:2rem;border:1px solid var(--border);position:relative;overflow:hidden}
+.edu-card::after{content:'';position:absolute;bottom:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--navy),var(--gold))}
+.edu-degree{font-family:'DM Serif Display',serif;font-size:1.2rem;color:var(--navy);margin-bottom:0.3rem;line-height:1.3}
+.edu-school{font-weight:600;font-size:0.9rem;color:var(--navy-light);margin-bottom:0.25rem}
+.edu-meta{font-size:0.82rem;color:var(--text-muted);margin-bottom:1rem}
+.edu-badge{display:inline-block;background:var(--navy);color:var(--gold);font-size:0.72rem;padding:0.25rem 0.7rem;border-radius:0.2rem;font-weight:600;font-family:'DM Mono',monospace;letter-spacing:0.05em;margin-bottom:1rem}
+.edu-courses{font-size:0.82rem;color:var(--text-muted);line-height:1.7}
+.edu-courses strong{color:var(--text);font-size:0.78rem;text-transform:uppercase;letter-spacing:0.06em;display:block;margin-bottom:0.4rem}
+
+#certifications{background:var(--section-alt)}
+.cert-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:1.2rem}
+.cert-card{display:flex;align-items:flex-start;gap:1rem;padding:1.2rem 1.4rem;border:1px solid var(--border);border-radius:0.5rem;background:var(--white);transition:border-color 0.2s}
+.cert-card:hover{border-color:var(--gold)}
+.cert-icon{width:36px;height:36px;min-width:36px;background:var(--navy);border-radius:0.35rem;display:flex;align-items:center;justify-content:center}
+.cert-icon svg{width:18px;height:18px;fill:var(--gold)}
+.cert-title{font-weight:600;font-size:0.88rem;color:var(--navy);line-height:1.3}
+.cert-issuer{font-size:0.78rem;color:var(--text-muted);margin-top:0.2rem}
+
+#leadership{background:var(--white)}
+.leadership-card{background:var(--section-alt);border-radius:0.6rem;padding:2rem 2.5rem;border:1px solid var(--border);display:grid;grid-template-columns:1fr 2fr;gap:3rem;align-items:start}
+.lead-org{font-family:'DM Serif Display',serif;font-size:1.6rem;color:var(--navy);line-height:1.2;margin-bottom:0.5rem}
+.lead-period{font-family:'DM Mono',monospace;font-size:0.75rem;color:var(--gold);letter-spacing:0.1em}
+.lead-role{font-size:0.9rem;color:var(--text-muted);font-weight:500;margin-bottom:0.3rem}
+.lead-bullets{list-style:none;display:flex;flex-direction:column;gap:0.7rem}
+.lead-bullets li{font-size:0.9rem;color:var(--text-muted);padding-left:1.2rem;position:relative;line-height:1.65}
+.lead-bullets li::before{content:'▸';position:absolute;left:0;color:var(--gold);font-size:0.7rem;top:0.2rem}
+.lead-numbers{display:flex;gap:2rem;margin-top:1.5rem}
+.lead-num .n{font-family:'DM Serif Display',serif;font-size:2rem;color:var(--navy)}
+.lead-num .l{font-size:0.75rem;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.06em}
+
+#contact{background:var(--navy);text-align:center}
+#contact .section-title{color:var(--white)}
+#contact .section-label{color:var(--gold-light)}
+#contact .section-divider{margin:0 auto 2rem}
+.contact-sub{color:rgba(255,255,255,0.65);max-width:480px;margin:0 auto 3rem;font-size:1rem;line-height:1.7;font-weight:300}
+.contact-links{display:flex;justify-content:center;flex-wrap:wrap;gap:1rem;margin-bottom:3rem}
+.contact-link{display:flex;align-items:center;gap:0.6rem;padding:0.85rem 1.8rem;border:1px solid rgba(255,255,255,0.2);border-radius:0.35rem;color:rgba(255,255,255,0.85);text-decoration:none;font-size:0.88rem;font-weight:500;transition:all 0.25s}
+.contact-link:hover{border-color:var(--gold);color:var(--gold)}
+.contact-link svg{width:18px;height:18px;fill:currentColor}
+.contact-note{font-size:0.78rem;color:rgba(255,255,255,0.3);font-family:'DM Mono',monospace;letter-spacing:0.1em}
+footer{background:var(--navy);border-top:1px solid rgba(255,255,255,0.08);padding:1.5rem 2rem;text-align:center}
+footer p{font-size:0.78rem;color:rgba(255,255,255,0.3);font-family:'DM Mono',monospace}
+
+@keyframes fadeUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
+@keyframes pulse{0%,100%{opacity:0.4}50%{opacity:0.9}}
+.reveal{opacity:0;transform:translateY(30px);transition:opacity 0.7s ease,transform 0.7s ease}
+.reveal.visible{opacity:1;transform:translateY(0)}
+
+@media(max-width:768px){
+  .nav-links{display:none;position:absolute;top:60px;left:0;right:0;background:var(--navy);flex-direction:column;padding:1.5rem 2rem;gap:1.5rem;border-top:1px solid rgba(255,255,255,0.1)}
+  .nav-links.open{display:flex}
+  .nav-toggle{display:flex}
+  .about-grid{grid-template-columns:1fr;gap:3rem}
+  .leadership-card{grid-template-columns:1fr;gap:1.5rem}
+  section{padding:4rem 1.5rem}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a href="#hero" class="nav-logo">SR</a>
+    <ul class="nav-links" id="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#presentations">Presentations</a></li>
+      <li><a href="#education">Education</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <div class="nav-toggle" id="nav-toggle" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </div>
+  </div>
+</nav>
+
+<section id="hero">
+  <div class="hero-grid"></div>
+  <div class="hero-orb"></div>
+  <div class="hero-content">
+    <p class="hero-eyebrow">Finance &amp; Product · Jersey City, NJ</p>
+    <h1 class="hero-name">Silas<br/><em>Ranjith</em></h1>
+    <p class="hero-sub">MS Financial Management · Magna Cum Laude · Pace University<br/>Bridging financial rigor with product thinking.</p>
+    <div class="hero-tags">
+      <span class="hero-tag">Financial Analysis</span>
+      <span class="hero-tag">Product Management</span>
+      <span class="hero-tag">FP&amp;A</span>
+      <span class="hero-tag">Bloomberg Certified</span>
+      <span class="hero-tag">Power BI</span>
+    </div>
+    <div class="hero-cta">
+      <a href="#contact" class="btn btn-primary">Get in Touch</a>
+      <a href="#experience" class="btn btn-outline">View Experience</a>
+    </div>
+  </div>
+  <div class="hero-scroll"><div class="scroll-line"></div><span>Scroll</span></div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="container">
+    <div class="about-grid">
+      <div>
+        <p class="section-label">About Me</p>
+        <h2 class="section-title">A finance mind<br/>with a <em>product lens</em></h2>
+        <div class="section-divider"></div>
+        <div class="about-text">
+          <p>I grew up between cultures, studied across continents, and landed in New York with a Master's in Financial Management and a clear sense of what problems I want to solve.</p>
+          <p>My path has taken me through construction finance in Bangalore, product analytics at a music education company, customer success roles where I consistently earned top performer recognition, and leadership roles managing teams and high-stakes events. Each chapter added a layer.</p>
+          <p>What ties it together: I care about <strong>what the numbers mean</strong>, who they affect, and what decisions they should drive. Whether that's a budget variance report or a product KPI dashboard, I want to build things that actually get used.</p>
+          <p>I'm actively seeking full-time roles in <strong>Financial Analysis, FP&amp;A, or Product Management</strong> — particularly in fintech and financial services.</p>
+        </div>
+        <div class="about-stats">
+          <div class="stat-card"><div class="stat-num">3.77</div><div class="stat-label">GPA · Magna Cum Laude</div></div>
+          <div class="stat-card"><div class="stat-num">3+</div><div class="stat-label">Years of Experience</div></div>
+          <div class="stat-card"><div class="stat-num">80%</div><div class="stat-label">Resolution Time Reduced</div></div>
+          <div class="stat-card"><div class="stat-num">700+</div><div class="stat-label">Student Community Led</div></div>
+        </div>
+      </div>
+      <div class="pillars">
+        <div class="pillar reveal">
+          <div class="pillar-num">01</div>
+          <div class="pillar-title">Analytical Rigor</div>
+          <div class="pillar-text">Two degrees, financial modeling, Bloomberg certification, and real-world variance analysis across construction and product environments.</div>
+        </div>
+        <div class="pillar reveal">
+          <div class="pillar-num">02</div>
+          <div class="pillar-title">Cross-Functional Execution</div>
+          <div class="pillar-text">From coordinating with engineering teams on LMS features to managing procurement and finance stakeholders on construction projects — I get things across the finish line.</div>
+        </div>
+        <div class="pillar reveal">
+          <div class="pillar-num">03</div>
+          <div class="pillar-title">Award-Winning Performance</div>
+          <div class="pillar-text">Consistently recognized as Top Performer and Top Rising Star across roles — not just for output, but for the impact of that output on customers and teams.</div>
+        </div>
+        <div class="pillar reveal">
+          <div class="pillar-num">04</div>
+          <div class="pillar-title">Communication &amp; Presentation</div>
+          <div class="pillar-text">Recognized by faculty for outstanding presentation skills. Delivered strategic analyses on Coinbase, Securitize, and Mutual Funds at graduate level.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="container">
+    <p class="section-label">What I Work With</p>
+    <h2 class="section-title">Technical <em>Skills</em></h2>
+    <div class="section-divider"></div>
+    <div class="skills-grid">
+      <div class="skill-card reveal">
+        <div class="skill-card-icon"><svg viewBox="0 0 24 24"><path d="M3 3h18v18H3V3zm2 2v14h14V5H5zm2 2h10v2H7V7zm0 4h10v2H7v-2zm0 4h6v2H7v-2z"/></svg></div>
+        <div class="skill-card-title">Finance &amp; Analysis</div>
+        <div class="skill-tags">
+          <span class="skill-tag highlight">Bloomberg Terminal</span>
+          <span class="skill-tag highlight">Financial Modeling</span>
+          <span class="skill-tag">Variance Analysis</span>
+          <span class="skill-tag">FP&amp;A</span>
+          <span class="skill-tag">Corporate Finance</span>
+          <span class="skill-tag">Valuation</span>
+          <span class="skill-tag">Budget Forecasting</span>
+        </div>
+      </div>
+      <div class="skill-card reveal">
+        <div class="skill-card-icon"><svg viewBox="0 0 24 24"><path d="M4 4h16v16H4V4zm2 2v12h12V6H6zm2 2h8v2H8V8zm0 4h8v2H8v-2zm0 4h4v2H8v-2z"/></svg></div>
+        <div class="skill-card-title">Data &amp; Analytics</div>
+        <div class="skill-tags">
+          <span class="skill-tag highlight">Power BI</span>
+          <span class="skill-tag highlight">Advanced Excel</span>
+          <span class="skill-tag">Google Sheets</span>
+          <span class="skill-tag">Dashboard Design</span>
+          <span class="skill-tag">KPI Tracking</span>
+          <span class="skill-tag">Process Automation</span>
+        </div>
+      </div>
+      <div class="skill-card reveal">
+        <div class="skill-card-icon"><svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 100 20A10 10 0 0012 2zm0 2a8 8 0 110 16A8 8 0 0112 4zm-1 3v6l5 3-1 1.73-6-3.73V7h2z"/></svg></div>
+        <div class="skill-card-title">Product &amp; CRM</div>
+        <div class="skill-tags">
+          <span class="skill-tag highlight">Zoho CRM</span>
+          <span class="skill-tag">LMS Management</span>
+          <span class="skill-tag">Ticketing Systems</span>
+          <span class="skill-tag">User Research</span>
+          <span class="skill-tag">Feature Requests</span>
+          <span class="skill-tag">Stakeholder Mgmt</span>
+        </div>
+      </div>
+      <div class="skill-card reveal">
+        <div class="skill-card-icon"><svg viewBox="0 0 24 24"><path d="M20 4H4a2 2 0 00-2 2v12a2 2 0 002 2h16a2 2 0 002-2V6a2 2 0 00-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg></div>
+        <div class="skill-card-title">Tools &amp; Software</div>
+        <div class="skill-tags">
+          <span class="skill-tag">Microsoft Office Suite</span>
+          <span class="skill-tag">Google Suite</span>
+          <span class="skill-tag">PowerPoint</span>
+          <span class="skill-tag">Zoho Desk</span>
+          <span class="skill-tag">Mac OS · Windows</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="container">
+    <p class="section-label">Where I've Worked</p>
+    <h2 class="section-title">Experience</h2>
+    <div class="section-divider"></div>
+    <div class="timeline">
+
+      <!-- Shanth Constructions -->
+      <div class="timeline-item reveal">
+        <div class="timeline-dot"></div>
+        <div class="timeline-date">August 2023 – February 2024</div>
+        <div class="timeline-co">Shanth Constructions</div>
+        <div class="timeline-role">Lead Operations · Bangalore, India</div>
+        <ul class="timeline-bullets">
+          <li>Drove the full monthly budgeting and forecasting cycle — translating actuals vs. plan into executive-ready variance reports that directly shaped corrective decisions.</li>
+          <li>Produced P&amp;L-aligned financial reports across cost, revenue, and margin dimensions, surfacing insights that led to leaner project cost structures across active builds.</li>
+          <li>Developed financial models to stress-test cost drivers, profitability scenarios, and resource allocation — giving leadership a clearer picture of project economics in real time.</li>
+        </ul>
+      </div>
+
+      <!-- Cloodon — full progression -->
+      <div class="timeline-item reveal">
+        <div class="timeline-dot"></div>
+        <div class="timeline-date">April 2022 – May 2023 · 13 months</div>
+        <div class="timeline-co">Cloodon Learning &amp; Musica</div>
+        <div class="timeline-role" style="margin-bottom:1.4rem">Bangalore, India · Full-time</div>
+
+        <!-- Role 3: Promoted to Analyst -->
+        <div style="margin-bottom:1.2rem">
+          <div style="display:flex;align-items:center;gap:0.6rem;margin-bottom:0.5rem;flex-wrap:wrap">
+            <span style="font-weight:600;font-size:0.92rem;color:var(--navy)">Analyst — Product, Projects &amp; Events</span>
+            <span style="font-family:'DM Mono',monospace;font-size:0.68rem;color:var(--text-muted)">Jan 2023 – May 2023</span>
+            <span style="background:var(--navy);color:var(--gold);font-size:0.65rem;padding:0.15rem 0.5rem;border-radius:1rem;font-family:'DM Mono',monospace;letter-spacing:0.05em">↑ PROMOTED BY CEO</span>
+          </div>
+          <ul class="timeline-bullets">
+            <li>Handpicked by the CEO for a cross-functional analyst role spanning product, operations, and live events — a direct recognition of performance in earlier roles.</li>
+            <li>Designed a bug-tracking system using Google Sheets and Zoho CRM that gave the IT team real-time visibility into issues, cutting incident resolution time by 80%.</li>
+            <li>Led a 50-person team to plan and deliver a flagship academy event — securing celebrity attendance, engaging prospective scholars, and closing within budget.</li>
+            <li>Ran structured product discovery sessions with team leads to identify LMS pain points and feature gaps; partnered with engineering to ship improvements that boosted team productivity, marketing effectiveness, and sales outcomes.</li>
+          </ul>
+        </div>
+
+        <!-- Role 2: CS & Sales -->
+        <div style="margin-bottom:1.2rem">
+          <div style="display:flex;align-items:center;gap:0.6rem;margin-bottom:0.5rem;flex-wrap:wrap">
+            <span style="font-weight:600;font-size:0.92rem;color:var(--navy)">Customer Success &amp; Sales Associate</span>
+            <span style="font-family:'DM Mono',monospace;font-size:0.68rem;color:var(--text-muted)">Jun 2022 – Jan 2023</span>
+          </div>
+          <div class="award-badge" style="margin-bottom:0.6rem">
+            <svg viewBox="0 0 24 24"><path d="M12 2l3 7h7l-5.5 4 2 7L12 16l-6.5 4 2-7L2 9h7z"/></svg>
+            Best Performer — Team Award
+          </div>
+          <ul class="timeline-bullets">
+            <li>Voluntarily expanded scope by taking on a Sales Associate role in addition to Customer Success — driving new client acquisition without any reduction in service quality.</li>
+            <li>Ran daily outreach across organic and cold pipelines, consistently growing the client base through disciplined follow-up and persuasive positioning.</li>
+            <li>Held both roles at full capacity simultaneously, demonstrating the kind of ownership and resilience that earned the Best Performer recognition from leadership.</li>
+          </ul>
+        </div>
+
+        <!-- Role 1: CS Associate -->
+        <div>
+          <div style="display:flex;align-items:center;gap:0.6rem;margin-bottom:0.5rem;flex-wrap:wrap">
+            <span style="font-weight:600;font-size:0.92rem;color:var(--navy)">Customer Success Associate</span>
+            <span style="font-family:'DM Mono',monospace;font-size:0.68rem;color:var(--text-muted)">Apr 2022 – Jun 2022</span>
+          </div>
+          <div class="award-badge" style="margin-bottom:0.6rem">
+            <svg viewBox="0 0 24 24"><path d="M12 2l3 7h7l-5.5 4 2 7L12 16l-6.5 4 2-7L2 9h7z"/></svg>
+            Top Rising Star Award · Customer Satisfaction
+          </div>
+          <ul class="timeline-bullets">
+            <li>Rebuilt the help desk from the ground up — reconfiguring Zoho CRM with custom fields, SLA timers, and automated reminders that brought open tickets from 380 down to 25.</li>
+            <li>Personally onboarded 20+ clients by walking them through the proprietary LMS, capturing their requirements and turning them into actionable feature requests for the tech team.</li>
+            <li>Partnered with Engineering and Accounting to automate the invoicing process end-to-end, eliminating 2–3 days of manual effort every month and reducing billing errors.</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Vihaan -->
+      <div class="timeline-item reveal">
+        <div class="timeline-dot"></div>
+        <div class="timeline-date">July 2021 – April 2022</div>
+        <div class="timeline-co">Vihaan Direct Selling (India)</div>
+        <div class="timeline-role">Customer Support Executive · Bangalore, India · Remote</div>
+        <div class="award-badge">
+          <svg viewBox="0 0 24 24"><path d="M12 2l3 7h7l-5.5 4 2 7L12 16l-6.5 4 2-7L2 9h7z"/></svg>
+          Top Performer — Consistent Award
+        </div>
+        <ul class="timeline-bullets">
+          <li>Earned the Top Performer title from management on a consistent basis, posting perfect scores in weekly call audits every single week throughout the tenure.</li>
+          <li>Handled an average of 80 customer calls per day across varied demographics — building genuine resilience, empathy, and the ability to stay sharp under sustained pressure.</li>
+          <li>Turned high-friction customer situations into resolution-first conversations, maintaining strong satisfaction scores even in the most challenging interactions.</li>
+          <li>Trusted with expanded responsibilities directly as a result of performance — one of few on the team singled out for additional opportunities by leadership.</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- PRESENTATIONS -->
+<section id="presentations">
+  <div class="container">
+    <p class="section-label">Academic Work</p>
+    <h2 class="section-title">Presentations &amp; <em>Research</em></h2>
+    <div class="section-divider"></div>
+    <p style="color:var(--text-muted);max-width:620px;margin-bottom:2.5rem;font-size:0.95rem;line-height:1.75">Recognized by faculty for outstanding presentation skills. The following are graduate-level strategic and financial analyses delivered as part of the MS Financial Management program at Pace University.</p>
+    <div class="pres-grid">
+
+      <div class="pres-card reveal">
+        <div class="pres-thumb pres-thumb-coinbase">
+          <div class="pres-thumb-text">COIN</div>
+          <div class="pres-logo">Coinbase</div>
+          <span class="pres-tag">24 SLIDES</span>
+        </div>
+        <div class="pres-body">
+          <div class="pres-course">FIN 669 · Financial Analysis</div>
+          <div class="pres-title">Coinbase — Financial &amp; Strategic Analysis of a Public Crypto Exchange</div>
+          <div class="pres-desc">End-to-end analysis of Coinbase's business model, revenue streams, competitive position, cost structure, and 5-year outlook — including a recommendation on investment and usage from a fintech perspective.</div>
+          <div class="pres-topics">
+            <span class="pres-topic">Revenue Modeling</span>
+            <span class="pres-topic">Competitive Analysis</span>
+            <span class="pres-topic">Crypto Markets</span>
+            <span class="pres-topic">Regulatory Risk</span>
+            <span class="pres-topic">Balance Sheet</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="pres-card reveal">
+        <div class="pres-thumb pres-thumb-securitize">
+          <div class="pres-thumb-text">RWA</div>
+          <div class="pres-logo">Securitize</div>
+          <span class="pres-tag">24 SLIDES</span>
+        </div>
+        <div class="pres-body">
+          <div class="pres-course">Graduate Seminar · Capital Markets</div>
+          <div class="pres-title">Securitize — Tokenization of Securities &amp; the Future of Capital Markets</div>
+          <div class="pres-desc">Strategic deep-dive into Securitize's platform, market opportunity, institutional backing (BlackRock, Morgan Stanley), and the broader case for real-world asset tokenization as financial infrastructure.</div>
+          <div class="pres-topics">
+            <span class="pres-topic">Asset Tokenization</span>
+            <span class="pres-topic">Blockchain Finance</span>
+            <span class="pres-topic">SEC Regulation</span>
+            <span class="pres-topic">Market Structure</span>
+            <span class="pres-topic">5-Year Outlook</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="pres-card reveal">
+        <div class="pres-thumb pres-thumb-funds">
+          <div class="pres-thumb-text">FUND</div>
+          <div class="pres-logo">Mutual Funds</div>
+          <span class="pres-tag">10 SLIDES</span>
+        </div>
+        <div class="pres-body">
+          <div class="pres-course">Money &amp; Capital Markets</div>
+          <div class="pres-title">Mutual Funds — Structure, Market, Regulation &amp; Global Context</div>
+          <div class="pres-desc">Comprehensive overview of the mutual fund industry — from historical origins in 1774 to modern UCITS frameworks — covering global market structure, regulation, trading and settlement, risk, and asset servicing.</div>
+          <div class="pres-topics">
+            <span class="pres-topic">Fund Structure</span>
+            <span class="pres-topic">UCITS / Global</span>
+            <span class="pres-topic">NAV &amp; Settlement</span>
+            <span class="pres-topic">Regulation</span>
+            <span class="pres-topic">Risk Analysis</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="container">
+    <p class="section-label">Industry Training</p>
+    <h2 class="section-title">Projects &amp; <em>Training</em></h2>
+    <div class="section-divider"></div>
+    <div class="projects-grid">
+      <div class="project-card reveal">
+        <div class="project-tag">Wealth Management · Aug 2025</div>
+        <div class="project-title">Citibank — Asset Allocation Framework</div>
+        <div class="project-desc">Constructed a multi-asset allocation framework analyzing risk-adjusted returns, diversification, and tax efficiency. Presented data-driven investment recommendations backed by quantitative modeling and current market analysis.</div>
+        <div class="project-chips">
+          <span class="project-chip">Portfolio Theory</span>
+          <span class="project-chip">Quantitative Modeling</span>
+          <span class="project-chip">Risk Analysis</span>
+        </div>
+      </div>
+      <div class="project-card reveal">
+        <div class="project-tag">Global Banking &amp; Markets · Jun 2025</div>
+        <div class="project-title">Goldman Sachs — Transaction Risk &amp; Controls</div>
+        <div class="project-desc">Evaluated financial and operational data within Global Banking &amp; Markets, assessing internal controls and transaction risk exposure. Proposed process improvements to strengthen governance and reporting integrity.</div>
+        <div class="project-chips">
+          <span class="project-chip">Internal Controls</span>
+          <span class="project-chip">Risk Management</span>
+          <span class="project-chip">Process Design</span>
+        </div>
+      </div>
+      <div class="project-card reveal">
+        <div class="project-tag">Cybersecurity Client · Nov 2024</div>
+        <div class="project-title">ATS — Cyber Risk &amp; Insurance Model</div>
+        <div class="project-desc">Built multi-scenario financial models evaluating revenue and operating cost structures for a cybersecurity services client. Prepared executive summaries distilling quantitative analysis into clear, decision-ready insights for senior leadership.</div>
+        <div class="project-chips">
+          <span class="project-chip">Financial Modeling</span>
+          <span class="project-chip">Scenario Analysis</span>
+          <span class="project-chip">Executive Communication</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EDUCATION -->
+<section id="education">
+  <div class="container">
+    <p class="section-label">Academic Background</p>
+    <h2 class="section-title">Education</h2>
+    <div class="section-divider"></div>
+    <div class="edu-grid">
+      <div class="edu-card reveal">
+        <span class="edu-badge">Magna Cum Laude · GPA 3.77</span>
+        <div class="edu-degree">Master of Science in Financial Management</div>
+        <div class="edu-school">Pace University, Lubin School of Business</div>
+        <div class="edu-meta">New York, NY · May 2026</div>
+        <div class="edu-courses">
+          <strong>Relevant Coursework</strong>
+          Financial Accounting &amp; Reporting · Corporate Finance · Advanced Financial Analysis · Business Analytics &amp; Data Modeling · Risk Management &amp; Insurance · Money and Capital Markets · Mergers &amp; Acquisitions · Managerial Accounting
+        </div>
+      </div>
+      <div class="edu-card reveal">
+        <span class="edu-badge">Bachelor of Commerce</span>
+        <div class="edu-degree">BCom — Accounting &amp; Business</div>
+        <div class="edu-school">Indira Gandhi National Open University</div>
+        <div class="edu-meta">Bangalore, India · December 2020</div>
+        <div class="edu-courses">
+          <strong>Concentration</strong>
+          Accounting and Business — foundation in financial principles, commercial law, and business operations that continues to inform how I approach analytical work.
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CERTIFICATIONS -->
+<section id="certifications">
+  <div class="container">
+    <p class="section-label">Credentials</p>
+    <h2 class="section-title">Certifications &amp; Awards</h2>
+    <div class="section-divider"></div>
+    <div class="cert-grid">
+      <div class="cert-card reveal">
+        <div class="cert-icon"><svg viewBox="0 0 24 24"><path d="M12 2l3 7h7l-5.5 4 2 7L12 16l-6.5 4 2-7L2 9h7z"/></svg></div>
+        <div><div class="cert-title">Bloomberg Finance Fundamentals</div><div class="cert-issuer">Bloomberg LP</div></div>
+      </div>
+      <div class="cert-card reveal">
+        <div class="cert-icon"><svg viewBox="0 0 24 24"><path d="M12 2l3 7h7l-5.5 4 2 7L12 16l-6.5 4 2-7L2 9h7z"/></svg></div>
+        <div><div class="cert-title">Bloomberg Market Concepts</div><div class="cert-issuer">Bloomberg LP</div></div>
+      </div>
+      <div class="cert-card reveal">
+        <div class="cert-icon"><svg viewBox="0 0 24 24"><path d="M9 12l2 2 4-4M7 4H5a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2V6a2 2 0 00-2-2h-2M9 4h6v4H9V4z"/></svg></div>
+        <div><div class="cert-title">Goldman Sachs Operations Program</div><div class="cert-issuer">Forage · June 2025</div></div>
+      </div>
+      <div class="cert-card reveal">
+        <div class="cert-icon"><svg viewBox="0 0 24 24"><path d="M9 12l2 2 4-4M7 4H5a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2V6a2 2 0 00-2-2h-2M9 4h6v4H9V4z"/></svg></div>
+        <div><div class="cert-title">Citibank Wealth Management Program</div><div class="cert-issuer">Forage · August 2025</div></div>
+      </div>
+      <div class="cert-card reveal">
+        <div class="cert-icon"><svg viewBox="0 0 24 24"><path d="M12 2l3 7h7l-5.5 4 2 7L12 16l-6.5 4 2-7L2 9h7z"/></svg></div>
+        <div><div class="cert-title">Top Rising Star Award</div><div class="cert-issuer">Cloodon Learning &amp; Musica · 2022</div></div>
+      </div>
+      <div class="cert-card reveal">
+        <div class="cert-icon"><svg viewBox="0 0 24 24"><path d="M12 2l3 7h7l-5.5 4 2 7L12 16l-6.5 4 2-7L2 9h7z"/></svg></div>
+        <div><div class="cert-title">Top Performer Award</div><div class="cert-issuer">Vihaan Direct Selling · 2021–2022</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LEADERSHIP -->
+<section id="leadership">
+  <div class="container">
+    <p class="section-label">Leadership &amp; Activities</p>
+    <h2 class="section-title">Community &amp; <em>Impact</em></h2>
+    <div class="section-divider"></div>
+    <div class="leadership-card reveal">
+      <div>
+        <div class="lead-org">Pace Indian Students Association</div>
+        <div class="lead-period">2025 – 2026</div>
+        <div style="margin-top:0.8rem">
+          <div class="lead-role">Vice President · Jan 2026 – May 2026</div>
+          <div class="lead-role">Secretary · May 2025 – Jan 2026</div>
+        </div>
+        <div class="lead-numbers">
+          <div class="lead-num"><div class="n">22</div><div class="l">Exec Team</div></div>
+          <div class="lead-num"><div class="n">700+</div><div class="l">Community</div></div>
+          <div class="lead-num"><div class="n">10+</div><div class="l">Events</div></div>
+        </div>
+      </div>
+      <div>
+        <ul class="lead-bullets">
+          <li>Directed a 22-member executive and operations team across Social Media, PR, Events, and Student Helpdesk — managing priorities, deadlines, and team performance simultaneously.</li>
+          <li>Planned and executed large-scale cultural and professional events attended by 700+ students and faculty, coordinating logistics end-to-end with university administration.</li>
+          <li>Negotiated with international sponsors and coordinated directly with the Indian Embassy in New York to secure funding and expand club initiatives.</li>
+          <li>Promoted from Secretary to Vice President within one year — recognized for organizational leadership and follow-through.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="container">
+    <p class="section-label">Get in Touch</p>
+    <h2 class="section-title">Let's <em>Connect</em></h2>
+    <div class="section-divider"></div>
+    <p class="contact-sub">Looking for full-time roles in Financial Analysis, FP&amp;A, Investment Banking, or Product Management. If you're working on something interesting, I'd love to hear from you.</p>
+    <div class="contact-links">
+      <a href="mailto:silasranjith28@gmail.com" class="contact-link">
+        <svg viewBox="0 0 24 24"><path d="M20 4H4a2 2 0 00-2 2v12a2 2 0 002 2h16a2 2 0 002-2V6a2 2 0 00-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+        silasranjith28@gmail.com
+      </a>
+      <a href="https://linkedin.com/in/silas-ranjith" target="_blank" class="contact-link">
+        <svg viewBox="0 0 24 24"><path d="M19 3a2 2 0 012 2v14a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h14m-.5 15.5v-5.3a3.26 3.26 0 00-3.26-3.26c-.85 0-1.84.52-2.32 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 011.4 1.4v4.93h2.79M6.88 8.56a1.68 1.68 0 001.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 00-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/></svg>
+        linkedin.com/in/silas-ranjith
+      </a>
+      <a href="tel:6462440790" class="contact-link">
+        <svg viewBox="0 0 24 24"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1-9.4 0-17-7.6-17-17 0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z"/></svg>
+        (646) 244-0790
+      </a>
+    </div>
+    <p class="contact-note">Jersey City, NJ · Open to Opportunities</p>
+  </div>
+</section>
+
+<footer>
+  <p>Silas Ranjith · 2026 · Built with HTML &amp; CSS · Hosted on GitHub Pages</p>
+</footer>
+
+<script>
+const toggle = document.getElementById('nav-toggle');
+const links = document.getElementById('nav-links');
+toggle.addEventListener('click', () => links.classList.toggle('open'));
+links.querySelectorAll('a').forEach(a => a.addEventListener('click', () => links.classList.remove('open')));
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach((e, i) => {
+    if (e.isIntersecting) setTimeout(() => e.target.classList.add('visible'), i * 80);
+  });
+}, { threshold: 0.12 });
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
